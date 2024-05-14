@@ -6,21 +6,32 @@ export type Point = {
 }
 
 export function loadDataFromWaveformCSV(csv: string): Data {
-	const table = csv.trimStart().split("\r\n").map(row => row.split(";"))
+	csv = csv.trim() // remove leading and trailing \r\n
+	csv = csv.substring(0, csv.length - 5) // removes weird trailing ";;;;"
+	const table = csv.split("\r\n").map(row => row.split(";"))
 	const nPlots = table[0].length - 1
-	const data: Data = new Array(nPlots).fill(0).map(() => [])
-
+	console.log("Plots detected:", nPlots)
+	console.log(table)
+	const data: Data = []
 	for (const row of table) {
 		// get only seconds from the timestamp
 		const x = parseFloat(row[0].split(":").slice(-1)[0].replace(",", "."))
+		const plots: Point[] = []
 		for (let plotIndex = 0, columnIndex = 1; plotIndex < nPlots; plotIndex++, columnIndex++) {
-			data[plotIndex].push({
+			const plot = {
 				x,
 				y: parseFloat(row[columnIndex])
-			})
+			}
+			plots.push(plot)
+			if (Number.isNaN(plot.x) || Number.isNaN(plot.y)) {
+				console.log("nan plot", plot)
+			}
 		}
+		data.push(plots)
 	}
-
+	if (data.length < 10) {
+		console.log(csv)
+	}
 	return data
 }
 
