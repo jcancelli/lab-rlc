@@ -8,4 +8,3 @@ export default function resonanceFrequency(l: number, c: number): number {
 export function resonancePulse(l: number, c: number): number {
 	return Math.sqrt(1 / (l * c))
 }
-

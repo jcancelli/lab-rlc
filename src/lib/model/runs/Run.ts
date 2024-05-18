@@ -3,8 +3,9 @@ import type { Metadata } from "./Metadata"
 
 export type Run = {
 	id: string
+	timestamp: Date
 	metadata: Metadata
 	voltages: Data
-	voltagesFrequency: Data
-	phasesFrequency: Data
+	voltageFrequency: Data
+	phaseFrequency: Data
 }

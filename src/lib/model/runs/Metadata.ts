@@ -6,10 +6,12 @@ export type Metadata = {
 	run_id: string
 	annotation: string
 	is_sweep: boolean
-	frequency: number | {
-		start: number
-		end: number
-	}
+	frequency:
+		| number
+		| {
+				start: number
+				end: number
+		  }
 	components: Components
 	daq_parameters: DAQParameters
 	daq_channels: DAQChannel[]

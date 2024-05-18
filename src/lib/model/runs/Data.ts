@@ -1,53 +1,89 @@
-export type Data = Point[][]
+import type { Plot, Point } from "../Plot"
 
-export type Point = {
-	x: number
-	y: number
-}
+export type Data = Plot[]
 
 export function loadDataFromWaveformCSV(csv: string): Data {
-	csv = csv.trim() // remove leading and trailing \r\n
-	csv = csv.substring(0, csv.length - 5) // removes weird trailing ";;;;"
-	const table = csv.split("\r\n").map(row => row.split(";"))
+	const table = cleanCSV(csv)
+		.split("\r\n")
+		.map(row => row.split(";"))
+
 	const nPlots = table[0].length - 1
-	console.log("Plots detected:", nPlots)
-	console.log(table)
+
 	const data: Data = []
+	for (let i = 0; i < nPlots; i++) {
+		data.push({
+			data: [],
+			label: ""
+		})
+	}
+
+	const firstX = labviewTimestampToPicoseconds(table[0][0])
+
 	for (const row of table) {
 		// get only seconds from the timestamp
-		const x = parseFloat(row[0].split(":").slice(-1)[0].replace(",", "."))
-		const plots: Point[] = []
+		const x = labviewTimestampToPicoseconds(row[0]) - firstX
+
 		for (let plotIndex = 0, columnIndex = 1; plotIndex < nPlots; plotIndex++, columnIndex++) {
 			const plot = {
 				x,
-				y: parseFloat(row[columnIndex])
+				y: Number(row[columnIndex])
 			}
-			plots.push(plot)
-			if (Number.isNaN(plot.x) || Number.isNaN(plot.y)) {
-				console.log("nan plot", plot)
-			}
+			data[plotIndex].data.push(plot)
 		}
-		data.push(plots)
 	}
-	if (data.length < 10) {
-		console.log(csv)
-	}
+
 	return data
 }
 
+export function getTimestampFromWaveformCSV(csv: string): Date {
+	csv = cleanCSV(csv)
+	const firstSemicolonIndex = csv.indexOf(";")
+	return labviewTimestampToDate(csv.slice(0, firstSemicolonIndex))
+}
+
+function labviewTimestampToPicoseconds(timestamp: string): number {
+	const [, , secondsStr] = timestamp.split(":")
+	return Number(secondsStr.replace(".", ""))
+}
+
+function labviewTimestampToDate(timestamp: string): Date {
+	const [date, time] = timestamp.split("  ")
+	const [months, days, years] = date.split("/").map(Number)
+	const [hours, minutes, seconds] = time.replace(",", ".").split(":").map(Number)
+	return new Date(years, months - 1, days, hours, minutes, seconds)
+}
+
 export function loadDataFromXYGraphCSV(csv: string): Data {
-	const table = csv.trimStart().split("\r\n").map(row => row.split(";"))
-	const nPlots = table[0].length
-	const data: Data = new Array(nPlots).fill(0).map(() => [])
+	const table = cleanCSV(csv)
+		.split("\r\n")
+		.map(row => row.split(";"))
+	const nPlots = table[0].length / 2
+
+	const data: Data = []
+	for (let i = 0; i < nPlots; i++) {
+		data.push({
+			data: [],
+			label: ""
+		})
+	}
 
 	for (const row of table) {
 		for (let x = 0, y = 1, plotIndex = 0; plotIndex < nPlots; x += 2, y += 2, plotIndex++) {
-			data[plotIndex].push({
-				x: parseFloat(row[x]),
-				y: parseFloat(row[y])
+			data[plotIndex].data.push({
+				x: Number(row[x]),
+				y: Number(row[y])
 			})
 		}
 	}
 
+	console.log(data)
+
 	return data
+}
+
+function cleanCSV(csv: string): string {
+	csv = csv
+		.trim() // remove leading and trailing \r\n
+		.replaceAll(",", ".")
+	return csv.substring(0, csv.length - 5) // removes weird trailing ";;;;"
 }
