@@ -1,5 +1,5 @@
-import adapter from '@sveltejs/adapter-static';
-import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import adapter from "@sveltejs/adapter-static"
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte"
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -13,6 +13,6 @@ const config = {
 	paths: {
 		base: process.env.NODE_ENV === "production" ? "lab-rlc" : ""
 	}
-};
+}
 
-export default config;
+export default config
