@@ -1,0 +1,23 @@
+{
+	"run_id": "59318C861D2061ED",
+	"annotation": "4 - Pre f0 - Q intorno a 1.7",
+	"is_sweep": false,
+	"frequency": 7000,
+	"components": {
+		"resistor_ohm": 329.30000000000001137,
+		"inductor_mh": 10.070000000000000284,
+		"capacitor_nf": 32.479999999999996874
+	},
+	"daq_parameters": {
+		"trigger_level": 0,
+		"trigger_slope": "rising",
+		"sample_rate": 140000,
+		"n_samples": 50
+	},
+	"daq_channels": [
+		{ "physical_channel": "Dev4/ai0", "logic_name": "V_SIG", "min_value": -1, "max_value": 1 },
+		{ "physical_channel": "Dev4/ai1", "logic_name": "V_R", "min_value": -1, "max_value": 1 },
+		{ "physical_channel": "Dev4/ai2", "logic_name": "V_L", "min_value": -1, "max_value": 1 },
+		{ "physical_channel": "Dev4/ai3", "logic_name": "V_C", "min_value": -1, "max_value": 1 }
+	]
+}

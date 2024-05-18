@@ -1,0 +1,46 @@
+{
+	"run_id": "F6F9A981F8B485E8",
+	"annotation": "4 - Sweep - Q intorno a 1.7",
+	"is_sweep": true,
+	"frequency": {
+		"start": 2000,
+		"end": 13000
+	},
+	"components": {
+		"resistor_ohm": 329.30000000000001137,
+		"inductor_mh": 10.070000000000000284,
+		"capacitor_nf": 32.479999999999996874
+	},
+	"daq_parameters": {
+		"trigger_level": 0,
+		"trigger_slope": "rising",
+		"sample_rate": 260000,
+		"n_samples": 200
+	},
+	"daq_channels": [
+		{
+			"physical_channel": "Dev4/ai0",
+			"logic_name": "V_SIG",
+			"min_value": -1,
+			"max_value": 1
+		},
+		{
+			"physical_channel": "Dev4/ai1",
+			"logic_name": "V_R",
+			"min_value": -1,
+			"max_value": 1
+		},
+		{
+			"physical_channel": "Dev4/ai2",
+			"logic_name": "V_L",
+			"min_value": -1,
+			"max_value": 1
+		},
+		{
+			"physical_channel": "Dev4/ai3",
+			"logic_name": "V_C",
+			"min_value": -1,
+			"max_value": 1
+		}
+	]
+}
