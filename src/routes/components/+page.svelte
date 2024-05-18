@@ -95,7 +95,8 @@
 	function formatNum(n: number, min: number, max: number): string {
 		return n.toLocaleString(undefined, {
 			minimumFractionDigits: min,
-			maximumFractionDigits: max
+			maximumFractionDigits: max,
+			useGrouping: false
 		})
 	}
 </script>
