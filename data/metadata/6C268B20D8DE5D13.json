@@ -1,0 +1,23 @@
+{
+	"run_id": "6C268B20D8DE5D13",
+	"annotation": "5 - Sweep - uguale a run 4 ma con 5 volts anziche 1",
+	"is_sweep": true,
+	"frequency": { "start": 2000, "end": 13000 },
+	"components": {
+		"resistor_ohm": 329.30000000000001137,
+		"inductor_mh": 10.070000000000000284,
+		"capacitor_nf": 32.479999999999996874
+	},
+	"daq_parameters": {
+		"trigger_level": 0,
+		"trigger_slope": "rising",
+		"sample_rate": 260000,
+		"n_samples": 200
+	},
+	"daq_channels": [
+		{ "physical_channel": "Dev4/ai0", "logic_name": "V_SIG", "min_value": -5, "max_value": 5 },
+		{ "physical_channel": "Dev4/ai1", "logic_name": "V_R", "min_value": -5, "max_value": 5 },
+		{ "physical_channel": "Dev4/ai2", "logic_name": "V_L", "min_value": -5, "max_value": 5 },
+		{ "physical_channel": "Dev4/ai3", "logic_name": "V_C", "min_value": -5, "max_value": 5 }
+	]
+}

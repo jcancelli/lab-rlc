@@ -1,0 +1,43 @@
+{
+	"run_id": "6C198C9FEB56FE64",
+	"annotation": "Misura sfasamento canali 17000Hz",
+	"is_sweep": false,
+	"frequency": 17000,
+	"components": {
+		"resistor_ohm": 0,
+		"inductor_mh": 0,
+		"capacitor_nf": 0
+	},
+	"daq_parameters": {
+		"trigger_level": 0,
+		"trigger_slope": "rising",
+		"sample_rate": 340000,
+		"n_samples": 400
+	},
+	"daq_channels": [
+		{
+			"physical_channel": "Dev4/ai0",
+			"logic_name": "V_SIG",
+			"min_value": -1,
+			"max_value": 1
+		},
+		{
+			"physical_channel": "Dev4/ai1",
+			"logic_name": "V_R",
+			"min_value": -1,
+			"max_value": 1
+		},
+		{
+			"physical_channel": "Dev4/ai2",
+			"logic_name": "V_L",
+			"min_value": -1,
+			"max_value": 1
+		},
+		{
+			"physical_channel": "Dev4/ai3",
+			"logic_name": "V_C",
+			"min_value": -1,
+			"max_value": 1
+		}
+	]
+}

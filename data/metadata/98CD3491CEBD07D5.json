@@ -1,0 +1,23 @@
+{
+	"run_id": "98CD3491CEBD07D5",
+	"annotation": "3 - Post f0. Q intorno a 0.7 e R abbastanza alta",
+	"is_sweep": false,
+	"frequency": 11200,
+	"components": {
+		"resistor_ohm": 388.54000000000002046,
+		"inductor_mh": 4.5999999999999996447,
+		"capacitor_nf": 58.799999999999997158
+	},
+	"daq_parameters": {
+		"trigger_level": 0,
+		"trigger_slope": "rising",
+		"sample_rate": 224000,
+		"n_samples": 50
+	},
+	"daq_channels": [
+		{ "physical_channel": "Dev4/ai0", "logic_name": "V_SIG", "min_value": -1, "max_value": 1 },
+		{ "physical_channel": "Dev4/ai1", "logic_name": "V_R", "min_value": -1, "max_value": 1 },
+		{ "physical_channel": "Dev4/ai2", "logic_name": "V_L", "min_value": -1, "max_value": 1 },
+		{ "physical_channel": "Dev4/ai3", "logic_name": "V_C", "min_value": -1, "max_value": 1 }
+	]
+}
